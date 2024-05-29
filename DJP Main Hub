@@ -1,0 +1,207 @@
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+   Name = "DJP HUB",
+   LoadingTitle = "Exploit",
+   LoadingSubtitle = "by Snack",
+   ConfigurationSaving = {
+      Enabled = false,
+      FolderName = nil, -- Create a custom folder for your hub/game
+      FileName = "DJP Hub"
+   },
+   Discord = {
+      Enabled = false,
+      Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD
+      RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+   },
+   KeySystem = true, -- Set this to true to use our key system
+   KeySettings = {
+      Title = "DJP HUB Whitelist Check",
+      Subtitle = "DJP Key",
+      Note = "Key: LoadDJP",
+      FileName = "DJP Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+      SaveKey = false, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+      Key = {"LoadDJP"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+   }
+})
+
+local PlayerTab = Window:CreateTab("Player", nil) -- Title, Image
+local ChatTab = Window:CreateTab("Chat", nil) -- Title, Image
+local scriptTab = Window:CreateTab("script", nil)
+local AdminTab = Window:CreateTab("Admin", nil)
+
+
+
+Rayfield:Notify({
+   Title = "DJP Is LOL",
+   Content = "LOLLLLLLLLL",
+   Duration = 5,
+   Image = 13047715178,
+   Actions = { 
+      Ignore = {
+         Name = "LOL",
+         Callback = function()
+         print("DJP LOL")
+      end
+   },
+},
+})
+
+local Button = PlayerTab:CreateButton({
+   Name = "Infinite Jump",
+   Callback = function()
+      
+_G.infinjump = not _G.infinjump
+
+if _G.infinJumpStarted == nil then
+	
+	_G.infinJumpStarted = true
+	
+	
+	game.StarterGui:SetCore("SendNotification", {Title="DJP Hub"; Text="Infinite Jump Activated!"; Duration=5;})
+
+	
+	local plr = game:GetService('Players').LocalPlayer
+	local m = plr:GetMouse()
+	m.KeyDown:connect(function(k)
+		if _G.infinjump then
+			if k:byte() == 32 then
+			humanoid = game:GetService'Players'.LocalPlayer.Character:FindFirstChildOfClass('Humanoid')
+			humanoid:ChangeState('Jumping')
+			wait()
+			humanoid:ChangeState('Seated')
+			end
+		end
+	end)
+end
+   end,
+})
+
+local Slider = PlayerTab:CreateSlider({
+   Name = "WalkSpeed",
+   Range = {1, 350},
+   Increment = 1,
+   Suffix = "Speed",
+   CurrentValue = 16,
+   Flag = "sliderws", 
+   Callback = function(Value)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = (Value)
+   end,
+})
+
+local Slider = PlayerTab:CreateSlider({
+   Name = "JumpPower",
+   Range = {1, 350},
+   Increment = 1,
+   Suffix = "Speed",
+   CurrentValue = 16,
+   Flag = "sliderjp",
+   Callback = function(Value)
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = (Value)
+   end,
+})
+
+local Button = PlayerTab:CreateButton({
+   Name = "Re Join",
+   Callback = function()
+local Players = game:GetService("Players")
+local TeleportService = game:GetService("TeleportService")
+local LocalPlayer = Players.LocalPlayer
+local PlaceId = game.PlaceId
+
+local function rejoinGame()
+    TeleportService:Teleport(PlaceId, LocalPlayer)
+end
+   end,
+})
+
+local Input = ChatTab:CreateInput({
+   Name = "Spam Chat",
+   PlaceholderText = "SEX",
+   RemoveTextAfterFocusLost = false,
+   Callback = function(Text)
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+local function sendMessage()
+    local message = (Text) 
+
+    for i = 1, 5 do
+        ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(message, "All")
+ wait(1)
+    end
+end
+
+sendMessage()
+   end,
+})
+
+local Input = ChatTab:CreateInput({
+   Name = "No filter Game UpdateSign",
+   PlaceholderText = "SEX IS LOL",
+   RemoveTextAfterFocusLost = false,
+   Callback = function(Text1)
+_G.say = (Text1)
+
+_G.Enabled = false 
+_G.SafeMode = true 
+_G.WithName = false 
+_G.FakeHacking = false 
+_G.delaysec = 0.01 
+
+local Players = game:GetService('Players')
+local client = Players.LocalPlayer
+print('Executed')
+
+    if not _G.alreadyexecutedlocalx then
+        _G.alreadyexecutedlocalx = true
+    while task.wait(_G.delaysec) do
+        if _G.Enabled then
+for _,p in ipairs(Players:GetPlayers()) do
+    local event = ((_G.SafeMode == true and p.Character) and p.Character:FindFirstChild('UpdateSign', true)) or ((p ~= client and p.Character) and p.Character:FindFirstChild('UpdateSign', true))
+    if event then
+        event:FireServer(((_G.FakeHacking and tostring(math.random(1000000, 100000000))) or (`{(_G.WithName and `{p.Name}는 {_G.say}`) or _G.say}{(not _G.SafeMode and '\ndiscord.gg/localx' or '')}`)))
+    end
+end
+    end
+end
+end
+   end,
+})
+
+local Button = scriptTab:CreateButton({
+   Name = "Acs CE Kill all",
+   Callback = function()
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+local GunkitRemotes = game:GetService("ReplicatedStorage"):FindFirstChild("Acs_Engine") and game:GetService("ReplicatedStorage"):FindFirstChild("Acs_Engine").Remotes or game:GetService("ReplicatedStorage"):FindFirstChild("Carbon") and game:GetService("ReplicatedStorage"):FindFirstChild("Carbon").Remotes or game:GetService("ReplicatedStorage"):FindFirstChild("GunRemotes")
+
+local gr = nil
+for index, value in pairs(GunkitRemotes:GetChildren()) do
+    if value.Name:lower() == "bullet" then
+        gr = value
+        break
+    end
+end
+
+if gr then
+    for index, player in pairs(Players:GetPlayers()) do
+        if player != LocalPlayer then
+            gr:FireServer{
+                "Auth", nil, game.CreatorId, player, math.huge
+            }
+        end
+    end
+end
+   end,
+})
+
+local Button = AdminTab:CreateButton({
+   Name = "IY Admin",
+   Callback = function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+   end,
+})
